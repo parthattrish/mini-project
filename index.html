@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Models Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      color: #0d0d0d;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #0d0d0d;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #00aaff;
+      letter-spacing: 2px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #111;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background: transparent;
+      color: #00aaff;
+      border: 2px solid transparent;
+      outline: none;
+      padding: 12px 25px;
+      margin: 8px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    nav button:hover {
+      border-color: #00aaff;
+      color: #fff;
+    }
+
+    nav button.active {
+      background: #00aaff;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .page {
+      flex: 1;
+      padding: 40px 20px;
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .card {
+      background: #f8f9fa;
+      padding: 25px;
+      margin: auto;
+      border-radius: 20px;
+      max-width: 700px;
+      box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+      color: #111;
+    }
+
+    input, textarea, select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 80%;
+      margin-top: 10px;
+      font-size: 1rem;
+      background: #fff;
+      color: #111;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: 2px solid #00aaff;
+    }
+
+    button.search-btn {
+      margin-top: 15px;
+      background: #00aaff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button.search-btn:hover {
+      background: #0077cc;
+    }
+
+    .output {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      text-align: left;
+      white-space: pre-line;
+      background: #f1f1f1;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .copy-btn {
+      margin-top: 10px;
+      background: #111;
+      color: #fff;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      background: #333;
+    }
+
+    .chatbox {
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 12px;
+      background: #f1f1f1;
+      max-height: 250px;
+      overflow-y: auto;
+      text-align: left;
+      border: 1px solid #ccc;
+    }
+
+    .chat-msg {
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 10px;
+      max-width: 80%;
+    }
+
+    .user {
+      background: #00aaff;
+      color: white;
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .bot {
+      background: #e9ecef;
+      color: #111;
+      margin-right: auto;
+    }
+
+    h1, h2, h3 {
+      color: #0d0d0d;
+    }
+
+    .under-construction img {
+      width: 300px;
+      max-width: 80%;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>⚡ AI Models Hub ⚡</header>
+
+  <nav>
+    <button class="tab-btn active" onclick="openPage('home')">🏠 Home</button>
+    <button class="tab-btn" onclick="openPage('weather')">🌤 Weather Agent</button>
+    <button class="tab-btn" onclick="openPage('tweet')">🐦 Tweet Generator</button>
+    <button class="tab-btn" onclick="openPage('movie')">🎬 Movie Suggestor</button>
+    <button class="tab-btn" onclick="openPage('n8n')">📧 Auto Email Drafter (n8n)</button>
+  </nav>
+
+  <!-- HOME PAGE -->
+  <div id="home" class="page active">
+    <div class="card">
+      <h1>Welcome to <span style="color:#00aaff;">AI Models Hub</span></h1>
+      <p>
+        This hub showcases powerful <strong>AI Agents</strong> built and orchestrated using
+        <strong>n8n automation workflows</strong> and <strong>Gemini AI integration</strong>.
+      </p>
+      <br>
+      <h2>🚀 AI Agents Overview</h2>
+      <ul style="text-align:left; max-width:600px; margin:auto; line-height:1.6;">
+        <li><b>🐦 Tweet Generator:</b> Crafts engaging tweets automatically based on your context and tone.</li>
+        <li><b>🎬 Movie Suggestor:</b> Recommends personalized films using your mood, era, and genre preferences.</li>
+        <li><b>🌤 Weather Predictor:</b> Provides real-time forecasts and Gemini-powered insights for smarter planning.</li>
+      </ul>
+      <br>
+      <h2>⚙️ About n8n Integration</h2>
+      <p>
+        The <b>n8n workflow engine</b> connects all these AI agents seamlessly.  
+        It automates data flow, manages API triggers, and even drafts email replies  
+        to important messages — making this ecosystem fully autonomous and intelligent.
+      </p>
+      <br>
+      <h3 style="color:#0077cc;">Built for efficiency. Designed for innovation.</h3>
+    </div>
+  </div>
+
+  <!-- Weather Agent -->
+  <div id="weather" class="page">
+    <div class="card">
+      <h2>🌤 Weather Agent</h2>
+      <input type="text" id="cityInput" placeholder="Enter city name">
+      <br>
+      <button class="search-btn" onclick="getWeather()">Get Weather</button>
+      <div id="weatherResult" class="output"></div>
+
+      <div class="chatbox" id="chatBox"></div>
+      <textarea id="userQuery" rows="2" placeholder="Ask about weather (e.g. Should I carry an umbrella?)"></textarea>
+      <br>
+      <button class="search-btn" onclick="askGemini()">Ask Gemini</button>
+    </div>
+  </div>
+
+  <!-- Tweet Generator -->
+  <div id="tweet" class="page">
+    <div class="card">
+      <h2>🐦 Tweet Generator</h2>
+      <label>Choose Tweet Type:</label><br>
+      <select id="tweetType">
+        <option value="funny">Funny</option>
+        <option value="motivational">Motivational</option>
+        <option value="informative">Informative</option>
+        <option value="general">General</option>
+      </select>
+      <br><br>
+
+      <label>Tweet Context:</label><br>
+      <textarea id="tweetContext" rows="3" placeholder="What should the tweet be about?"></textarea>
+      <br><br>
+
+      <label>Number of lines:</label><br>
+      <input type="number" id="tweetLines" min="1" max="3" value="1">
+      <br><br>
+
+      <button class="search-btn" onclick="generateTweet()">Generate Tweet</button>
+
+      <div id="tweetResult" class="output"></div>
+      <button id="copyBtn" class="copy-btn" style="display:none;" onclick="copyTweet()">📋 Copy Tweet</button>
+    </div>
+  </div>
+
+  <!-- Movie Suggestor -->
+  <div id="movie" class="page">
+    <div class="card">
+      <h2>🎬 Movie Suggestor</h2>
+      <label>Select Industry:</label><br>
+      <select id="industry">
+        <option>Bollywood</option>
+        <option>Hollywood</option>
+        <option>Tollywood</option>
+        <option>Bhojpuri</option>
+        <option>Top 10 in India</option>
+      </select><br><br>
+
+      <label>Select Genre:</label><br>
+      <select id="genre">
+        <option>Any</option>
+        <option>Horror</option>
+        <option>Comedy</option>
+        <option>Romantic</option>
+        <option>Action</option>
+      </select><br><br>
+
+      <label>Choose Era:</label><br>
+      <select id="era">
+        <option value="Any">Any</option>
+        <option value="New">🎞 New (After 2018)</option>
+        <option value="Old">📼 Old / Classic (Before 2018)</option>
+      </select><br><br>
+
+      <button class="search-btn" onclick="suggestMovie()">Suggest Movies</button>
+      <div id="movieResult" class="output"></div>
+    </div>
+  </div>
+
+  <!-- n8n Auto Email Drafter -->
+  <div id="n8n" class="page">
+    <div class="card under-construction">
+      <h2>📧 Auto Email Drafter (n8n)</h2>
+      <p style="font-size:1.1rem;">This section is currently under construction 🚧</p>
+      <img src="https://cdn-icons-png.flaticon.com/512/679/679720.png" alt="Under Construction">
+      <p style="color:#0077cc; margin-top:15px;">We’re building a smart email drafting agent powered by n8n workflows.</p>
+    </div>
+  </div>
+
+  <script>
+    let currentCity = "";
+
+    function openPage(pageId) {
+      const pages = document.querySelectorAll(".page");
+      const buttons = document.querySelectorAll(".tab-btn");
+
+      pages.forEach(p => p.classList.remove("active"));
+      buttons.forEach(b => b.classList.remove("active"));
+
+      document.getElementById(pageId).classList.add("active");
+      event.currentTarget.classList.add("active");
+    }
+
+    async function getWeather() {
+      const city = document.getElementById("cityInput").value;
+      const resultDiv = document.getElementById("weatherResult");
+
+      if (!city.trim()) {
+        resultDiv.innerHTML = "⚠️ Please enter a city name.";
+        return;
+      }
+
+      resultDiv.innerHTML = "⏳ Fetching weather data...";
+      currentCity = city;
+
+      try {
+        const response = await fetch("/get_weather", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({city})
+        });
+        const data = await response.json();
+
+        if (data.error) resultDiv.innerHTML = "❌ Could not fetch weather data.";
+        else {
+          resultDiv.innerHTML = `
+            📍 Location: ${data.location.name}, ${data.location.country}
+            🌡 Temperature: ${data.current.temp_c}°C
+            🌥 Condition: ${data.current.condition.text}
+            💧 Humidity: ${data.current.humidity}%
+            💨 Wind: ${data.current.wind_kph} kph
+          `;
+        }
+      } catch {
+        resultDiv.innerHTML = "❌ Error fetching data.";
+      }
+    }
+
+    async function askGemini() {
+      const query = document.getElementById("userQuery").value;
+      const chatBox = document.getElementById("chatBox");
+      if (!query.trim()) return;
+
+      chatBox.innerHTML += `<div class="chat-msg user">🙋 ${query}</div>`;
+      document.getElementById("userQuery").value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      const response = await fetch("/ask_gemini", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({query, city: currentCity || "Delhi", category: "weather"})
+      });
+
+      const data = await response.json();
+      chatBox.innerHTML += `<div class="chat-msg bot">🤖 ${data.answer || "❌ Sorry, I couldn’t get a response."}</div>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    async function generateTweet() {
+      const type = document.getElementById("tweetType").value;
+      const context = document.getElementById("tweetContext").value;
+      const lines = document.getElementById("tweetLines").value;
+      const resultDiv = document.getElementById("tweetResult");
+      const copyBtn = document.getElementById("copyBtn");
+
+      resultDiv.innerHTML = "⏳ Generating tweet...";
+      copyBtn.style.display = "none";
+
+      try {
+        const response = await fetch("/generate_tweet", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({ type, context, lines })
+        });
+        const data = await response.json();
+        resultDiv.innerHTML = `<b>✅ Your Tweet:</b><br><br>${data.tweet}`;
+        copyBtn.style.display = "inline-block";
+      } catch {
+        resultDiv.innerHTML = "❌ Error generating tweet.";
+      }
+    }
+
+    function copyTweet() {
+      const tweetText = document.getElementById("tweetResult").innerText.replace("✅ Your Tweet:\n\n", "");
+      navigator.clipboard.writeText(tweetText).then(() => alert("✅ Tweet copied to clipboard!"));
+    }
+
+    async function suggestMovie() {
+      const industry = document.getElementById("industry").value;
+      const genre = document.getElementById("genre").value;
+      const era = document.getElementById("era").value;
+
+      const res = await fetch("/suggest_movie", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({industry, genre, era})
+      });
+      const data = await res.json();
+      document.getElementById("movieResult").innerHTML = data.movies;
+    }
+  </script>
+
+</body>
+</html>
